@@ -9,26 +9,28 @@
 /* Begin PBXBuildFile section */
 		7982D67A21E22039C30A3D85 /* Pods_AliasFrontend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFB7FA69673C20D0549745C /* Pods_AliasFrontend.framework */; };
 		996A80982A1A649900CDD996 /* AliasFrontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996A80972A1A649900CDD996 /* AliasFrontendApp.swift */; };
-		996A809A2A1A649900CDD996 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996A80992A1A649900CDD996 /* ContentView.swift */; };
+		996A809A2A1A649900CDD996 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996A80992A1A649900CDD996 /* LoginView.swift */; };
 		996A809C2A1A649D00CDD996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 996A809B2A1A649D00CDD996 /* Assets.xcassets */; };
 		996A809F2A1A649D00CDD996 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 996A809E2A1A649D00CDD996 /* Preview Assets.xcassets */; };
 		996A80A62A1A829800CDD996 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996A80A52A1A829800CDD996 /* Service.swift */; };
 		996A80AB2A1A854400CDD996 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996A80AA2A1A854400CDD996 /* UserResponse.swift */; };
 		996A80AD2A1A94BA00CDD996 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996A80AC2A1A94BA00CDD996 /* LoginResponse.swift */; };
 		996A80AF2A1A96CC00CDD996 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996A80AE2A1A96CC00CDD996 /* KeyChain.swift */; };
+		996A80B22A1AB79800CDD996 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996A80B12A1AB79800CDD996 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7EE8773FF6DC6885DD0B1D37 /* Pods-AliasFrontend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliasFrontend.debug.xcconfig"; path = "Target Support Files/Pods-AliasFrontend/Pods-AliasFrontend.debug.xcconfig"; sourceTree = "<group>"; };
 		996A80942A1A649900CDD996 /* AliasFrontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliasFrontend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		996A80972A1A649900CDD996 /* AliasFrontendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasFrontendApp.swift; sourceTree = "<group>"; };
-		996A80992A1A649900CDD996 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		996A80992A1A649900CDD996 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		996A809B2A1A649D00CDD996 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		996A809E2A1A649D00CDD996 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		996A80A52A1A829800CDD996 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		996A80AA2A1A854400CDD996 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		996A80AC2A1A94BA00CDD996 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		996A80AE2A1A96CC00CDD996 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
+		996A80B12A1AB79800CDD996 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BBC5A72E592AAAC70C05539E /* Pods-AliasFrontend.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliasFrontend.release.xcconfig"; path = "Target Support Files/Pods-AliasFrontend/Pods-AliasFrontend.release.xcconfig"; sourceTree = "<group>"; };
 		CBFB7FA69673C20D0549745C /* Pods_AliasFrontend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AliasFrontend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -75,9 +77,9 @@
 		996A80962A1A649900CDD996 /* AliasFrontend */ = {
 			isa = PBXGroup;
 			children = (
+				996A80B02A1AB14A00CDD996 /* LoginView */,
 				996A80A72A1A82A600CDD996 /* Model */,
 				996A80972A1A649900CDD996 /* AliasFrontendApp.swift */,
-				996A80992A1A649900CDD996 /* ContentView.swift */,
 				996A809B2A1A649D00CDD996 /* Assets.xcassets */,
 				996A809D2A1A649D00CDD996 /* Preview Content */,
 				996A80A52A1A829800CDD996 /* Service.swift */,
@@ -101,6 +103,15 @@
 				996A80AC2A1A94BA00CDD996 /* LoginResponse.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		996A80B02A1AB14A00CDD996 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				996A80992A1A649900CDD996 /* LoginView.swift */,
+				996A80B12A1AB79800CDD996 /* LoginViewModel.swift */,
+			);
+			path = LoginView;
 			sourceTree = "<group>";
 		};
 		F7A13AB74DC7744FE6863331 /* Frameworks */ = {
@@ -227,10 +238,11 @@
 			files = (
 				996A80AB2A1A854400CDD996 /* UserResponse.swift in Sources */,
 				996A80AF2A1A96CC00CDD996 /* KeyChain.swift in Sources */,
-				996A809A2A1A649900CDD996 /* ContentView.swift in Sources */,
+				996A809A2A1A649900CDD996 /* LoginView.swift in Sources */,
 				996A80982A1A649900CDD996 /* AliasFrontendApp.swift in Sources */,
 				996A80A62A1A829800CDD996 /* Service.swift in Sources */,
 				996A80AD2A1A94BA00CDD996 /* LoginResponse.swift in Sources */,
+				996A80B22A1AB79800CDD996 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
