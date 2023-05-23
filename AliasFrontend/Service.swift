@@ -69,4 +69,25 @@ extension Service {
             }
         }
     }
+    
+    func logout(complition: @escaping (RequestResult) -> Void) {
+        let url = URL(string: "http://\(Service.ip):\(Service.port)/users/logout")!
+        let keyChainService = KeyChainService()
+        do {
+            let token = try keyChainService.getToken(identifier: "bearer")
+            let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+            AF.request(url, method: .post, headers: headers)
+            .validate()
+            .responseDecodable(of: LoginResponse.self) { response in
+                switch response.result {
+                case .success(let value):
+                    complition(.success(value: value))
+                case .failure(let error):
+                    complition(.error(error: error))
+                }
+            }
+        } catch {
+            complition(.error(error: error))
+        }
+    }
 }

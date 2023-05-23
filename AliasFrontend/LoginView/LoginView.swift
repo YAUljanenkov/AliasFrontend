@@ -31,7 +31,7 @@ struct LoginView: View {
                     Text("Нет аккаунта?")
                         .font(.system(size: 14.0))
                     NavigationLink {
-                        Text("Worked")
+                        RegisterView()
                     } label: {
                         Label("Зарегистрироваться", systemImage: "person.fill.badge.plus")
                             .font(.system(size: 14.0))

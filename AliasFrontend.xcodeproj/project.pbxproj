@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7982D67A21E22039C30A3D85 /* Pods_AliasFrontend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFB7FA69673C20D0549745C /* Pods_AliasFrontend.framework */; };
+		991A8BE82A1CF5860039B15A /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A8BE62A1CF5860039B15A /* RegisterView.swift */; };
+		991A8BE92A1CF5860039B15A /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A8BE72A1CF5860039B15A /* RegisterViewModel.swift */; };
 		996A80982A1A649900CDD996 /* AliasFrontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996A80972A1A649900CDD996 /* AliasFrontendApp.swift */; };
 		996A809A2A1A649900CDD996 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996A80992A1A649900CDD996 /* LoginView.swift */; };
 		996A809C2A1A649D00CDD996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 996A809B2A1A649D00CDD996 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		7EE8773FF6DC6885DD0B1D37 /* Pods-AliasFrontend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliasFrontend.debug.xcconfig"; path = "Target Support Files/Pods-AliasFrontend/Pods-AliasFrontend.debug.xcconfig"; sourceTree = "<group>"; };
+		991A8BE62A1CF5860039B15A /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		991A8BE72A1CF5860039B15A /* RegisterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		996A80942A1A649900CDD996 /* AliasFrontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliasFrontend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		996A80972A1A649900CDD996 /* AliasFrontendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasFrontendApp.swift; sourceTree = "<group>"; };
 		996A80992A1A649900CDD996 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -56,6 +60,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		991A8BE52A1CF51E0039B15A /* RegisterView */ = {
+			isa = PBXGroup;
+			children = (
+				991A8BE62A1CF5860039B15A /* RegisterView.swift */,
+				991A8BE72A1CF5860039B15A /* RegisterViewModel.swift */,
+			);
+			path = RegisterView;
+			sourceTree = "<group>";
+		};
 		996A808B2A1A649900CDD996 = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +90,7 @@
 		996A80962A1A649900CDD996 /* AliasFrontend */ = {
 			isa = PBXGroup;
 			children = (
+				991A8BE52A1CF51E0039B15A /* RegisterView */,
 				996A80B02A1AB14A00CDD996 /* LoginView */,
 				996A80A72A1A82A600CDD996 /* Model */,
 				996A80972A1A649900CDD996 /* AliasFrontendApp.swift */,
@@ -241,7 +255,9 @@
 				996A809A2A1A649900CDD996 /* LoginView.swift in Sources */,
 				996A80982A1A649900CDD996 /* AliasFrontendApp.swift in Sources */,
 				996A80A62A1A829800CDD996 /* Service.swift in Sources */,
+				991A8BE82A1CF5860039B15A /* RegisterView.swift in Sources */,
 				996A80AD2A1A94BA00CDD996 /* LoginResponse.swift in Sources */,
+				991A8BE92A1CF5860039B15A /* RegisterViewModel.swift in Sources */,
 				996A80B22A1AB79800CDD996 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
