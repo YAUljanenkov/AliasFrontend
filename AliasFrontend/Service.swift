@@ -19,7 +19,7 @@ protocol ServiceProtocol {
 }
 
 class Service: ServiceProtocol {
-    static let ip = "127.0.0.1"
+    static let ip = "alias-swift-api.onrender.com"
     static let port = 8080
     static let shared: ServiceProtocol = Service()
     private init() { }
@@ -27,7 +27,7 @@ class Service: ServiceProtocol {
 
 extension Service {
     func register(name: String, email: String, password: String, complition: @escaping (RequestResult) -> Void) {
-        let url = URL(string: "http://\(Service.ip):\(Service.port)/users/register")!
+        let url = URL(string: "https://\(Service.ip)/users/register")!
         let parameters = ["name": name, "email": email, "password": password]
         AF.upload(multipartFormData: { data in
             for (key, value) in parameters {
