@@ -10,6 +10,7 @@ import Alamofire
 
 class RegisterViewModel: ObservableObject {
     var dataManager: ServiceProtocol
+    weak var navigationController: UINavigationController?
     var login: String = ""
     var password: String = ""
     var name: String = ""
@@ -17,7 +18,7 @@ class RegisterViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var errorMessage = ""
     
-    init( dataManager: ServiceProtocol = Service.shared) {
+    init( dataManager: ServiceProtocol = Service.shared, navigationController: UINavigationController?) {
         self.dataManager = dataManager
     }
     
@@ -38,6 +39,7 @@ class RegisterViewModel: ObservableObject {
                     case .success(let value):
                         // TODO: add action.
                         print(value)
+//                        navigationController?.setViewControllers([ViewController()], animated: true)
                     case .error(let error):
                         // TODO: add proper check.
                         print(error)

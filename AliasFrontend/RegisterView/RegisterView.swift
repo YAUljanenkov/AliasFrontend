@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @ObservedObject var viewModel = RegisterViewModel()
+    @ObservedObject var viewModel: RegisterViewModel
+    
+    init(navigationController: UINavigationController?) {
+        viewModel = RegisterViewModel(navigationController: navigationController)
+    }
     
     func loginAction() {
         viewModel.registerUser()
@@ -36,11 +40,5 @@ struct RegisterView: View {
                 Alert(title: Text("Ошибка"), message: Text (viewModel.errorMessage), dismissButton: .default(Text("OK")))
             }
         }
-    }
-}
-
-struct RegisterView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegisterView()
     }
 }

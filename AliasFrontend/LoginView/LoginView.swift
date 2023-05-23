@@ -8,7 +8,15 @@
 import SwiftUI
 
 struct LoginView: View {
-    @ObservedObject var viewModel = LoginViewModel()
+    
+    weak var navigationController: UINavigationController?
+    
+    init(navigationController: UINavigationController?) {
+        viewModel = LoginViewModel(navigationController: navigationController)
+        self.navigationController = navigationController
+    }
+    
+    @ObservedObject var viewModel: LoginViewModel
     
     func loginAction() {
         viewModel.loginUser()
@@ -31,7 +39,7 @@ struct LoginView: View {
                     Text("Нет аккаунта?")
                         .font(.system(size: 14.0))
                     NavigationLink {
-                        RegisterView()
+                        RegisterView(navigationController: navigationController)
                     } label: {
                         Label("Зарегистрироваться", systemImage: "person.fill.badge.plus")
                             .font(.system(size: 14.0))
@@ -56,11 +64,5 @@ struct GrowingButton: ButtonStyle {
             .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
     }
 }
