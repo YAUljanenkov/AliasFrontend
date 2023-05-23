@@ -37,7 +37,7 @@ class RegisterViewModel: ObservableObject {
                 self?.dataManager.login(email: login, password: password) {result in
                     switch result {
                     case .success(let value):
-                        // TODO: add action.
+                        
                         print(value)
 //                        navigationController?.setViewControllers([ViewController()], animated: true)
                     case .error(let error):
