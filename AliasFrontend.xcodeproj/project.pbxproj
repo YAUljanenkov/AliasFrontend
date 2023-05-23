@@ -24,6 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1562F41F2A1D68A80086A7C8 /* AdminPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPresenter.swift; sourceTree = "<group>"; };
+		1562F4212A1D68A80086A7C8 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
+		1562F4232A1D68A80086A7C8 /* AdminViewInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewInputProtocol.swift; sourceTree = "<group>"; };
+		1562F4242A1D68A80086A7C8 /* AdminViewOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewOutputProtocol.swift; sourceTree = "<group>"; };
+		1562F4252A1D68A80086A7C8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = AliasFrontend/UIColorExtension.swift; sourceTree = "<group>"; };
 		9475E9EE9C56B4683B549CFB /* Pods-AliasFrontend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliasFrontend.debug.xcconfig"; path = "Target Support Files/Pods-AliasFrontend/Pods-AliasFrontend.debug.xcconfig"; sourceTree = "<group>"; };
 		991D785A2A1D4EF000D331AA /* AliasFrontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliasFrontend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		991D785D2A1D4EF000D331AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,9 +69,47 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1562F41D2A1D68A80086A7C8 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				1562F41E2A1D68A80086A7C8 /* Presenter */,
+				1562F4202A1D68A80086A7C8 /* Views */,
+				1562F4222A1D68A80086A7C8 /* Protocols */,
+			);
+			name = Admin;
+			path = AliasFrontend/Admin;
+			sourceTree = "<group>";
+		};
+		1562F41E2A1D68A80086A7C8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1562F41F2A1D68A80086A7C8 /* AdminPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1562F4202A1D68A80086A7C8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1562F4212A1D68A80086A7C8 /* AdminViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1562F4222A1D68A80086A7C8 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1562F4232A1D68A80086A7C8 /* AdminViewInputProtocol.swift */,
+				1562F4242A1D68A80086A7C8 /* AdminViewOutputProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		991D78512A1D4EF000D331AA = {
 			isa = PBXGroup;
 			children = (
+				1562F41D2A1D68A80086A7C8 /* Admin */,
+				1562F4252A1D68A80086A7C8 /* UIColorExtension.swift */,
 				991D785C2A1D4EF000D331AA /* AliasFrontend */,
 				991D785B2A1D4EF000D331AA /* Products */,
 				AEBB550099074A982C1B965F /* Pods */,
