@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AdminViewOutputProtocol: AnyObject {
-    func changedType(with type: TypeOfSimulation)
+    func changedType(with type: TypeOfPrivate)
 
-    func checkErrorsAndPresent(withGroup group: String?, withFactor factor: String?, withPeriod period: String?, currentType: TypeOfSimulation)
+    func checkErrorsAndPresent(name: String?, currentType: TypeOfPrivate)
 }

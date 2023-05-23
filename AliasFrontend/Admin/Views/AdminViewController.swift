@@ -19,42 +19,19 @@ class AdminViewController: UIViewController {
         static let startButtonBottomConstraint = 35.0
         static let animationDuration = 0.3
 
-        static let defaultGroupSize = 100
         static let defaultInfectionFactor = 3
         static let defaultPeriod = 1.0
     }
 
     private var output: AdminViewOutputProtocol
 
-    private var currentType: TypeOfSimulation = .network
+    private var currentType: TypeOfPrivate = .privateGame
 
     private var isButtonAnimating = false
 
-    private lazy var groupSizeLabel: UILabel = {
+    private lazy var gameNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Количество людей"
-        label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textAlignment = .center
-        label.numberOfLines = 1
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private lazy var infectionFactorLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Фактор инфекции"
-        label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textAlignment = .center
-        label.numberOfLines = 1
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private lazy var periodLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Период пересчета"
+        label.text = "Название комнаты"
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textAlignment = .center
@@ -65,7 +42,7 @@ class AdminViewController: UIViewController {
 
     private lazy var typeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Загрузка людей"
+        label.text = "Выберите тип"
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textAlignment = .center
@@ -74,30 +51,30 @@ class AdminViewController: UIViewController {
         return label
     }()
 
-    private var networkLabel: UILabel = {
+    private var publicLabel: UILabel = {
         let networkLabel = UILabel()
-        networkLabel.text = "По сети"
+        networkLabel.text = "Публичная"
         networkLabel.textColor = .white
         networkLabel.font = UIFont.boldSystemFont(ofSize: 15)
         networkLabel.translatesAutoresizingMaskIntoConstraints = false
         return networkLabel
     }()
 
-    private let localLabel: UILabel = {
+    private let privateLabel: UILabel = {
         let localLabel = UILabel()
-        localLabel.text = "Локально"
+        localLabel.text = "Приватная"
         localLabel.textColor = .white
         localLabel.font = UIFont.boldSystemFont(ofSize: 15)
         localLabel.translatesAutoresizingMaskIntoConstraints = false
         return localLabel
     }()
 
-    private lazy var groupSizeTextField: UITextField = {
+    private lazy var gameNameTextField: UITextField = {
         let textField = UITextField()
         textField.layer.cornerRadius = Constants.cornerRadius
         textField.layer.borderWidth = 2.0
         textField.font = UIFont.systemFont(ofSize: 17)
-        textField.text = "\(Constants.defaultGroupSize)"
+        textField.placeholder = "Например: Пираты"
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 13, height: textField.frame.size.height))
         textField.leftViewMode = .always
         textField.textColor = .black
@@ -106,35 +83,7 @@ class AdminViewController: UIViewController {
         return textField
     }()
 
-    private lazy var infectionFactorTextField: UITextField = {
-        let textField = UITextField()
-        textField.layer.cornerRadius = Constants.cornerRadius
-        textField.layer.borderWidth = 2.0
-        textField.font = UIFont.systemFont(ofSize: 17)
-        textField.text = "\(Constants.defaultInfectionFactor)"
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 13, height: textField.frame.size.height))
-        textField.leftViewMode = .always
-        textField.textColor = .black
-        textField.backgroundColor = .white
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-
-    private lazy var periodTextField: UITextField = {
-        let textField = UITextField()
-        textField.layer.cornerRadius = Constants.cornerRadius
-        textField.layer.borderWidth = 2.0
-        textField.font = UIFont.systemFont(ofSize: 17)
-        textField.text = "\(Constants.defaultPeriod)"
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 13, height: textField.frame.size.height))
-        textField.leftViewMode = .always
-        textField.textColor = .black
-        textField.backgroundColor = .white
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-
-    private lazy var networkButton: UIButton = {
+    private lazy var publicButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(buttonsHandler), for: .touchUpInside)
@@ -148,7 +97,7 @@ class AdminViewController: UIViewController {
         return button
     }()
 
-    private lazy var localButton: UIButton = {
+    private lazy var privateButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(buttonsHandler), for: .touchUpInside)
@@ -163,36 +112,32 @@ class AdminViewController: UIViewController {
     }()
 
     private lazy var stackView: UIStackView = {
-        let networkStackView = UIStackView(arrangedSubviews: [
-            networkLabel, networkButton
+        let publicStackView = UIStackView(arrangedSubviews: [
+            publicLabel, publicButton
         ])
-        networkStackView.axis = .vertical
-        networkStackView.spacing = 10
-        networkStackView.alignment = .center
-        networkStackView.distribution = .fill
+        publicStackView.axis = .vertical
+        publicStackView.spacing = 10
+        publicStackView.alignment = .center
+        publicStackView.distribution = .fill
 
-        let localStackView = UIStackView(arrangedSubviews: [
-            localLabel, localButton
+        let privateStackView = UIStackView(arrangedSubviews: [
+            privateLabel, privateButton
         ])
-        localStackView.spacing = 10
-        localStackView.alignment = .center
-        localStackView.distribution = .fill
-        localStackView.axis = .vertical
+        privateStackView.spacing = 10
+        privateStackView.alignment = .center
+        privateStackView.distribution = .fill
+        privateStackView.axis = .vertical
 
         let horizontalStackView = UIStackView(arrangedSubviews: [
-            networkStackView, localStackView
+            publicStackView, privateStackView
         ])
         horizontalStackView.spacing = 30
         horizontalStackView.alignment = .center
         horizontalStackView.distribution = .fill
         horizontalStackView.axis = .horizontal
         let stackView = UIStackView(arrangedSubviews: [
-            groupSizeLabel,
-            groupSizeTextField,
-            infectionFactorLabel,
-            infectionFactorTextField,
-            periodLabel,
-            periodTextField,
+            gameNameLabel,
+            gameNameTextField,
             typeLabel,
             horizontalStackView
         ])
@@ -203,9 +148,7 @@ class AdminViewController: UIViewController {
         stackView.layer.cornerRadius = Constants.cornerRadius
         stackView.alignment = .center
         stackView.distribution = .fill
-        stackView.setCustomSpacing(30, after: groupSizeTextField)
-        stackView.setCustomSpacing(30, after: infectionFactorTextField)
-        stackView.setCustomSpacing(30, after: periodTextField)
+        stackView.setCustomSpacing(30, after: gameNameTextField)
         stackView.layoutMargins = UIEdgeInsets(top: Constants.largeInset, left: 0, bottom: Constants.largeInset, right: 0)
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
@@ -215,7 +158,7 @@ class AdminViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = UIColor(hexString: "#0077FF")
         button.tintColor = .white
-        button.setTitle("Запустить моделирование", for: .normal)
+        button.setTitle("Создать комнату", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = Constants.cornerRadius
@@ -239,7 +182,7 @@ class AdminViewController: UIViewController {
 
     private func setupUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Создание игры"
+        navigationItem.title = "Создание комнаты"
         startButton.addTarget(self, action: #selector(startButtonOnTapHandler), for: .touchUpInside)
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onPressed(_:)))
         startButton.addGestureRecognizer(longPressRecognizer)
@@ -259,17 +202,9 @@ class AdminViewController: UIViewController {
         ])
 
         NSLayoutConstraint.activate([
-            groupSizeTextField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight),
-            groupSizeTextField.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: Constants.inset),
-            groupSizeTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -Constants.inset),
-
-            infectionFactorTextField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight),
-            infectionFactorTextField.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: Constants.inset),
-            infectionFactorTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -Constants.inset),
-
-            periodTextField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight),
-            periodTextField.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: Constants.inset),
-            periodTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -Constants.inset)
+            gameNameTextField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight),
+            gameNameTextField.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: Constants.inset),
+            gameNameTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -Constants.inset),
         ])
     }
 
@@ -293,14 +228,14 @@ class AdminViewController: UIViewController {
     }
 
     @objc func startButtonOnTapHandler() {
-        output.checkErrorsAndPresent(withGroup: groupSizeTextField.text, withFactor: infectionFactorTextField.text, withPeriod: periodTextField.text, currentType: currentType)
+        output.checkErrorsAndPresent(name: gameNameTextField.text, currentType: currentType)
     }
 
     @objc private func buttonsHandler(_ sender: UIButton) {
-        if sender == networkButton {
-            output.changedType(with: .network)
+        if sender == publicButton {
+            output.changedType(with: TypeOfPrivate.publicGame)
         } else {
-            output.changedType(with: .local)
+            output.changedType(with: TypeOfPrivate.privateGame)
         }
     }
 }
@@ -359,41 +294,40 @@ extension AdminViewController {
 extension AdminViewController: AdminViewInputProtocol {
 
     func setErrorGroupTextField() {
-        groupSizeTextField.layer.borderColor = UIColor.systemRed.cgColor
-    }
-
-    func setErrorInfectionFactorTextField() {
-        infectionFactorTextField.layer.borderColor = UIColor.systemRed.cgColor
+        gameNameTextField.layer.borderColor = UIColor.systemRed.cgColor
     }
 
     func setupTextFieldBorderColor() {
-        groupSizeTextField.layer.borderColor = UIColor.systemGray3.cgColor
-        infectionFactorTextField.layer.borderColor = UIColor.systemGray3.cgColor
-        periodTextField.layer.borderColor = UIColor.systemGray3.cgColor
+        gameNameTextField.layer.borderColor = UIColor.systemGray3.cgColor
     }
 
-    func setErrorPeriodTextField() {
-        periodTextField.layer.borderColor = UIColor.systemRed.cgColor
-    }
-
-    func presentVizualization() {
+    func presentRoom() {
         let transition = CATransition()
         transition.duration = 0.5
         transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         transition.type = .moveIn
         transition.subtype = .fromTop
-        navigationController?.view.layer.add(transition, forKey: nil)
+        Service.shared.createRoom(name: gameNameTextField.text ?? "", isPrivate: currentType == .privateGame, complition: { [weak self] result in
+            switch result {
+            case .success(let value):
+                print(value)
+                self?.navigationController?.view.layer.add(transition, forKey: nil)
+                self?.present(ViewController(), animated: true)
+            case .error(let error):
+                self?.showErrorAlert(message: error.localizedDescription)
+            }
+        })
     }
 
-    func setNetworkType () {
-        networkButton.isSelected = true
-        localButton.isSelected = false
-        currentType = .network
+    func setPublicType () {
+        publicButton.isSelected = true
+        privateButton.isSelected = false
+        currentType = .publicGame
     }
 
-    func setLocalType() {
-        localButton.isSelected = true
-        networkButton.isSelected = false
-        currentType = .local
+    func setPrivateType() {
+        privateButton.isSelected = true
+        publicButton.isSelected = false
+        currentType = .privateGame
     }
 }

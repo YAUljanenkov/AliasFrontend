@@ -16,6 +16,7 @@ enum RequestResult {
 protocol ServiceProtocol {
     func register(name: String, email: String, password: String, complition: @escaping (RequestResult) -> Void)
     func login(email: String, password: String, complition: @escaping (RequestResult) -> Void)
+    func createRoom(name: String, isPrivate: Bool, complition: @escaping (RequestResult) -> Void) 
 }
 
 class Service: ServiceProtocol {
@@ -64,6 +65,32 @@ extension Service {
                 } catch {
                     complition(.error(error: error))
                 }
+            case .failure(let error):
+                complition(.error(error: error))
+            }
+        }
+    }
+
+    func createRoom(name: String, isPrivate: Bool, complition: @escaping (RequestResult) -> Void) {
+        let keyChainService = KeyChainService()
+        var token = ""
+        do {
+            token = try keyChainService.getToken(identifier: "bearer")
+        } catch {}
+        let url = URL(string: "http://\(Service.ip):\(Service.port)/game-rooms/create")!
+        let parameters = ["name": name, "isPrivate": String(isPrivate)]
+        let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+        AF.upload(multipartFormData: { data in
+            for (key, value) in parameters {
+                 data.append(Data(value.utf8), withName: key)
+             }
+        }, to: url, method: .post, headers: headers)
+        .validate()
+        .responseDecodable(of: CreateRoomResponse.self) { response in
+            print(response)
+            switch response.result {
+            case .success(let value):
+                complition(.success(value: value))
             case .failure(let error):
                 complition(.error(error: error))
             }

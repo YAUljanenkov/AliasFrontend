@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		155BB43B2A1D6A370029F727 /* AdminPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1562F41F2A1D68A80086A7C8 /* AdminPresenter.swift */; };
+		155BB43C2A1D6A3D0029F727 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1562F4212A1D68A80086A7C8 /* AdminViewController.swift */; };
+		155BB43D2A1D6A400029F727 /* AdminViewInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1562F4232A1D68A80086A7C8 /* AdminViewInputProtocol.swift */; };
+		155BB43E2A1D6A420029F727 /* AdminViewOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1562F4242A1D68A80086A7C8 /* AdminViewOutputProtocol.swift */; };
+		155BB43F2A1D6A4D0029F727 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1562F4252A1D68A80086A7C8 /* UIColorExtension.swift */; };
+		155BB4412A1D73F80029F727 /* CreateRoomResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155BB4402A1D73F80029F727 /* CreateRoomResponse.swift */; };
 		991D785E2A1D4EF000D331AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991D785D2A1D4EF000D331AA /* AppDelegate.swift */; };
 		991D78602A1D4EF000D331AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991D785F2A1D4EF000D331AA /* SceneDelegate.swift */; };
 		991D78622A1D4EF000D331AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991D78612A1D4EF000D331AA /* ViewController.swift */; };
@@ -24,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		155BB4402A1D73F80029F727 /* CreateRoomResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomResponse.swift; sourceTree = "<group>"; };
 		1562F41F2A1D68A80086A7C8 /* AdminPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPresenter.swift; sourceTree = "<group>"; };
 		1562F4212A1D68A80086A7C8 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		1562F4232A1D68A80086A7C8 /* AdminViewInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewInputProtocol.swift; sourceTree = "<group>"; };
@@ -148,6 +155,7 @@
 			children = (
 				991D787E2A1D504000D331AA /* UserResponse.swift */,
 				991D78802A1D506400D331AA /* LoginResponse.swift */,
+				155BB4402A1D73F80029F727 /* CreateRoomResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				155BB43E2A1D6A420029F727 /* AdminViewOutputProtocol.swift in Sources */,
 				991D78622A1D4EF000D331AA /* ViewController.swift in Sources */,
 				991D78872A1D50DC00D331AA /* RegisterView.swift in Sources */,
 				991D787C2A1D4F8500D331AA /* Service.swift in Sources */,
@@ -301,7 +310,12 @@
 				991D785E2A1D4EF000D331AA /* AppDelegate.swift in Sources */,
 				991D78602A1D4EF000D331AA /* SceneDelegate.swift in Sources */,
 				991D787F2A1D504000D331AA /* UserResponse.swift in Sources */,
+				155BB43C2A1D6A3D0029F727 /* AdminViewController.swift in Sources */,
+				155BB43D2A1D6A400029F727 /* AdminViewInputProtocol.swift in Sources */,
+				155BB43F2A1D6A4D0029F727 /* UIColorExtension.swift in Sources */,
+				155BB43B2A1D6A370029F727 /* AdminPresenter.swift in Sources */,
 				991D78832A1D507D00D331AA /* LoginView.swift in Sources */,
+				155BB4412A1D73F80029F727 /* CreateRoomResponse.swift in Sources */,
 				991D78812A1D506400D331AA /* LoginResponse.swift in Sources */,
 				991D78852A1D509500D331AA /* LoginViewModel.swift in Sources */,
 			);

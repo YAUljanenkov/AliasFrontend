@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum TypeOfSimulation {
-    case network
-    case local
+enum TypeOfPrivate {
+    case privateGame
+    case publicGame
 }
 
 final class AdminPresenter {
@@ -18,70 +18,29 @@ final class AdminPresenter {
 
 extension AdminPresenter: AdminViewOutputProtocol {
 
-    func checkErrorsAndPresent(withGroup group: String?, withFactor factor: String?, withPeriod period: String?, currentType: TypeOfSimulation) {
+    func checkErrorsAndPresent(name: String?, currentType: TypeOfPrivate) {
 
         viewInput?.setupTextFieldBorderColor()
-        guard let groupSize = Int(group ?? "") else {
-            viewInput?.showErrorAlert(message: "Введите размер группы целым числом")
+        if name == nil {
+            viewInput?.showErrorAlert(message: "Введите непустую строку")
             viewInput?.setErrorGroupTextField()
             return
         }
-        if groupSize < 1 {
-            viewInput?.showErrorAlert(message: "Введите размер группы положительным числом")
+        if name == "" {
+            viewInput?.showErrorAlert(message: "Введите непустую строку")
             viewInput?.setErrorGroupTextField()
-            return
-        }
-        if groupSize > 200 && currentType == .network {
-            viewInput?.showErrorAlert(message: "API не позволяет загрузить более 200, попробуйте локально")
-            viewInput?.setErrorGroupTextField()
-            return
-        }
-        if groupSize > 1000 && currentType == .local {
-            viewInput?.showErrorAlert(message: "Оперативка не всесильна... В локальном режиме до 1000 (в минимальном зуме и одновременно на других максимальных настройках начинает лагать)")
-            viewInput?.setErrorGroupTextField()
-            return
-        }
-        guard let infectionFactor = Int(factor ?? "") else {
-            viewInput?.showErrorAlert(message: "Введите фактор инфекции целым числом")
-            viewInput?.setErrorInfectionFactorTextField()
-            return
-        }
-        if infectionFactor < 1 {
-            viewInput?.showErrorAlert(message: "Введите фактор инфекции положительным числом")
-            viewInput?.setErrorInfectionFactorTextField()
-            return
-        }
-        if infectionFactor > 4 {
-            viewInput?.showErrorAlert(message: "У зараженного не может быть более 4 соседей")
-            viewInput?.setErrorInfectionFactorTextField()
-            return
-        }
-        guard let period = Double(period ?? "") else {
-            viewInput?.showErrorAlert(message: "Введите период дробным числом (через точку)")
-            viewInput?.setErrorPeriodTextField()
-            return
-        }
-        if period <= 0 {
-            viewInput?.showErrorAlert(message: "Введите период положительным дробным числом")
-            viewInput?.setErrorPeriodTextField()
-            return
-        }
-        if period < 0.1 {
-            viewInput?.showErrorAlert(message: "Оперативка не всесильна... Необходимо от 0.1")
-            viewInput?.setErrorPeriodTextField()
-            return
         }
         viewInput?.setupTextFieldBorderColor()
-        viewInput?.presentVizualization()
+        viewInput?.presentRoom()
     }
 
 
-    func changedType(with type: TypeOfSimulation) {
+    func changedType(with type: TypeOfPrivate) {
         switch (type) {
-        case .local:
-            viewInput?.setLocalType()
-        case .network:
-            viewInput?.setNetworkType()
+        case .privateGame:
+            viewInput?.setPrivateType()
+        case .publicGame:
+            viewInput?.setPublicType()
         }
     }
 }

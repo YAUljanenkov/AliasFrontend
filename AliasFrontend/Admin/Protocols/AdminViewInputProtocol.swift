@@ -9,19 +9,15 @@ import Foundation
 
 protocol AdminViewInputProtocol: AnyObject {
 
-    func setNetworkType()
+    func setPublicType()
 
-    func setLocalType()
+    func setPrivateType()
 
     func showErrorAlert(message: String)
 
     func setErrorGroupTextField()
 
-    func setErrorInfectionFactorTextField()
-
-    func setErrorPeriodTextField()
-
-    func presentVizualization()
+    func presentRoom()
 
     func setupTextFieldBorderColor()
 }

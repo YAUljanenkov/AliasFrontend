@@ -20,6 +20,7 @@ class RegisterViewModel: ObservableObject {
     
     init( dataManager: ServiceProtocol = Service.shared, navigationController: UINavigationController?) {
         self.dataManager = dataManager
+        self.navigationController = navigationController
     }
     
     func registerUser() {
@@ -34,12 +35,14 @@ class RegisterViewModel: ObservableObject {
                 }
                 
                 // Registration does not log in, we need to do it afterwards to get bearer token.
-                self?.dataManager.login(email: login, password: password) {result in
+                self?.dataManager.login(email: login, password: password) { result in
                     switch result {
                     case .success(let value):
-                        
+                        let presenter = AdminPresenter()
+                        let viewController = AdminViewController(output: presenter)
+                        presenter.viewInput = viewController
                         print(value)
-//                        navigationController?.setViewControllers([ViewController()], animated: true)
+                        self?.navigationController?.setViewControllers([viewController], animated: true)
                     case .error(let error):
                         // TODO: add proper check.
                         print(error)
