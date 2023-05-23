@@ -32,8 +32,8 @@
 		991D78662A1D4EF400D331AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		991D78692A1D4EF400D331AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		991D786B2A1D4EF400D331AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		991D78742A1D4F8500D331AA /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeyChain.swift; path = /Users/schmitzer/Desktop/AliasFrontend/AliasFrontend/KeyChain.swift; sourceTree = "<absolute>"; };
-		991D78782A1D4F8500D331AA /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Service.swift; path = /Users/schmitzer/Desktop/AliasFrontend/AliasFrontend/Service.swift; sourceTree = "<absolute>"; };
+		991D78742A1D4F8500D331AA /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
+		991D78782A1D4F8500D331AA /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		991D787E2A1D504000D331AA /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		991D78802A1D506400D331AA /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		991D78822A1D507D00D331AA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -106,9 +106,8 @@
 				991D787E2A1D504000D331AA /* UserResponse.swift */,
 				991D78802A1D506400D331AA /* LoginResponse.swift */,
 			);
-			name = Model;
-			path = /Users/schmitzer/Desktop/AliasFrontend/AliasFrontend/Model;
-			sourceTree = "<absolute>";
+			path = Model;
+			sourceTree = "<group>";
 		};
 		991D78772A1D4F8500D331AA /* LoginView */ = {
 			isa = PBXGroup;
@@ -116,9 +115,8 @@
 				991D78822A1D507D00D331AA /* LoginView.swift */,
 				991D78842A1D509500D331AA /* LoginViewModel.swift */,
 			);
-			name = LoginView;
-			path = /Users/schmitzer/Desktop/AliasFrontend/AliasFrontend/LoginView;
-			sourceTree = "<absolute>";
+			path = LoginView;
+			sourceTree = "<group>";
 		};
 		991D787B2A1D4F8500D331AA /* RegisterView */ = {
 			isa = PBXGroup;
@@ -126,9 +124,8 @@
 				991D78862A1D50DC00D331AA /* RegisterView.swift */,
 				991D78882A1D50F000D331AA /* RegisterViewModel.swift */,
 			);
-			name = RegisterView;
-			path = /Users/schmitzer/Desktop/AliasFrontend/AliasFrontend/RegisterView;
-			sourceTree = "<absolute>";
+			path = RegisterView;
+			sourceTree = "<group>";
 		};
 		AEBB550099074A982C1B965F /* Pods */ = {
 			isa = PBXGroup;
