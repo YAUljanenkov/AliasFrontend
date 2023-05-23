@@ -36,7 +36,7 @@ class RegisterViewModel: ObservableObject {
                 self?.dataManager.login(email: login, password: password) {result in
                     switch result {
                     case .success(let value):
-                        // TODO: add action.
+                        
                         print(value)
                     case .error(let error):
                         // TODO: add proper check.

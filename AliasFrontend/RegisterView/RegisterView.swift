@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RegisterView: View {
+
     @ObservedObject var viewModel = RegisterViewModel()
     
     func loginAction() {

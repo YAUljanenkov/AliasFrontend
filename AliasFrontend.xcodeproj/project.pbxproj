@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1562F3FF2A1D06EE0086A7C8 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1562F3FE2A1D06EE0086A7C8 /* AdminViewController.swift */; };
+		1562F4042A1D07290086A7C8 /* AdminViewInputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1562F4032A1D07290086A7C8 /* AdminViewInputProtocol.swift */; };
+		1562F4062A1D07420086A7C8 /* AdminViewOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1562F4052A1D07420086A7C8 /* AdminViewOutputProtocol.swift */; };
+		1562F4082A1D07770086A7C8 /* AdminPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1562F4072A1D07770086A7C8 /* AdminPresenter.swift */; };
+		1562F40A2A1D40100086A7C8 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1562F4092A1D40100086A7C8 /* UIColorExtension.swift */; };
+		1562F40C2A1D45190086A7C8 /* ControllerRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1562F40B2A1D45190086A7C8 /* ControllerRepresentable.swift */; };
 		7982D67A21E22039C30A3D85 /* Pods_AliasFrontend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBFB7FA69673C20D0549745C /* Pods_AliasFrontend.framework */; };
 		991A8BE82A1CF5860039B15A /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A8BE62A1CF5860039B15A /* RegisterView.swift */; };
 		991A8BE92A1CF5860039B15A /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A8BE72A1CF5860039B15A /* RegisterViewModel.swift */; };
@@ -22,6 +28,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1562F3FE2A1D06EE0086A7C8 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
+		1562F4032A1D07290086A7C8 /* AdminViewInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewInputProtocol.swift; sourceTree = "<group>"; };
+		1562F4052A1D07420086A7C8 /* AdminViewOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewOutputProtocol.swift; sourceTree = "<group>"; };
+		1562F4072A1D07770086A7C8 /* AdminPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPresenter.swift; sourceTree = "<group>"; };
+		1562F4092A1D40100086A7C8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		1562F40B2A1D45190086A7C8 /* ControllerRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerRepresentable.swift; sourceTree = "<group>"; };
 		7EE8773FF6DC6885DD0B1D37 /* Pods-AliasFrontend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliasFrontend.debug.xcconfig"; path = "Target Support Files/Pods-AliasFrontend/Pods-AliasFrontend.debug.xcconfig"; sourceTree = "<group>"; };
 		991A8BE62A1CF5860039B15A /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		991A8BE72A1CF5860039B15A /* RegisterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
@@ -51,6 +63,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1562F3FD2A1D06AD0086A7C8 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				1562F4022A1D07160086A7C8 /* Protocols */,
+				1562F4012A1D070C0086A7C8 /* Presenter */,
+				1562F4002A1D07050086A7C8 /* Views */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		1562F4002A1D07050086A7C8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1562F3FE2A1D06EE0086A7C8 /* AdminViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1562F4012A1D070C0086A7C8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1562F4072A1D07770086A7C8 /* AdminPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1562F4022A1D07160086A7C8 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1562F4032A1D07290086A7C8 /* AdminViewInputProtocol.swift */,
+				1562F4052A1D07420086A7C8 /* AdminViewOutputProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		6BC56B974FFB5094293E505D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +137,7 @@
 		996A80962A1A649900CDD996 /* AliasFrontend */ = {
 			isa = PBXGroup;
 			children = (
+				1562F3FD2A1D06AD0086A7C8 /* Admin */,
 				991A8BE52A1CF51E0039B15A /* RegisterView */,
 				996A80B02A1AB14A00CDD996 /* LoginView */,
 				996A80A72A1A82A600CDD996 /* Model */,
@@ -98,6 +146,8 @@
 				996A809D2A1A649D00CDD996 /* Preview Content */,
 				996A80A52A1A829800CDD996 /* Service.swift */,
 				996A80AE2A1A96CC00CDD996 /* KeyChain.swift */,
+				1562F4092A1D40100086A7C8 /* UIColorExtension.swift */,
+				1562F40B2A1D45190086A7C8 /* ControllerRepresentable.swift */,
 			);
 			path = AliasFrontend;
 			sourceTree = "<group>";
@@ -251,13 +301,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				996A80AB2A1A854400CDD996 /* UserResponse.swift in Sources */,
+				1562F40A2A1D40100086A7C8 /* UIColorExtension.swift in Sources */,
 				996A80AF2A1A96CC00CDD996 /* KeyChain.swift in Sources */,
 				996A809A2A1A649900CDD996 /* LoginView.swift in Sources */,
+				1562F4062A1D07420086A7C8 /* AdminViewOutputProtocol.swift in Sources */,
 				996A80982A1A649900CDD996 /* AliasFrontendApp.swift in Sources */,
 				996A80A62A1A829800CDD996 /* Service.swift in Sources */,
+				1562F4082A1D07770086A7C8 /* AdminPresenter.swift in Sources */,
 				991A8BE82A1CF5860039B15A /* RegisterView.swift in Sources */,
 				996A80AD2A1A94BA00CDD996 /* LoginResponse.swift in Sources */,
 				991A8BE92A1CF5860039B15A /* RegisterViewModel.swift in Sources */,
+				1562F4042A1D07290086A7C8 /* AdminViewInputProtocol.swift in Sources */,
+				1562F40C2A1D45190086A7C8 /* ControllerRepresentable.swift in Sources */,
+				1562F3FF2A1D06EE0086A7C8 /* AdminViewController.swift in Sources */,
 				996A80B22A1AB79800CDD996 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
