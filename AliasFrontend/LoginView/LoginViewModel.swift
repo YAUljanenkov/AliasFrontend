@@ -22,14 +22,13 @@ class LoginViewModel: ObservableObject {
     }
     
     func loginUser() {
+        // Вход не работает только один раз (ошибка на бэкенде), поэтому входим только после регистрации.
         dataManager.login(email: login, password: password) {[weak self] result in
             switch result {
             case .success(let value):
-                // TODO: add action.
                 print(value)
 //                navigationController?.setViewControllers([ViewController()], animated: true)
             case .error(let error):
-                // TODO: add proper check.
                 print(error)
                 self?.showAlert.toggle()
                 self?.errorMessage = error.localizedDescription

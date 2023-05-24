@@ -15,8 +15,8 @@ class JoinByCodeViewController: UIViewController {
         static let textFieldHeight = 40.0
         static let cornerRadius = 15.0
 
-        static let startButtonHeight = 50.0
-        static let startButtonBottomConstraint = 35.0
+        static let joinButtonHeight = 50.0
+        static let joinButtonBottomConstraint = 35.0
         static let animationDuration = 0.3
     }
 
@@ -92,7 +92,7 @@ class JoinByCodeViewController: UIViewController {
         return stackView
     }()
 
-    private var startButton: UIButton = {
+    private var joinButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(hexString: "#0077FF")
         button.tintColor = .white
@@ -121,15 +121,15 @@ class JoinByCodeViewController: UIViewController {
     private func setupUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Присоединиться"
-        startButton.addTarget(self, action: #selector(startButtonOnTapHandler), for: .touchUpInside)
+        joinButton.addTarget(self, action: #selector(joinButtonOnTapHandler), for: .touchUpInside)
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onPressed(_:)))
-        startButton.addGestureRecognizer(longPressRecognizer)
+        joinButton.addGestureRecognizer(longPressRecognizer)
         view.backgroundColor = .white
         view.addSubview(stackView)
-        view.addSubview(startButton)
+        view.addSubview(joinButton)
         setupTextFieldBorderColor()
         setupStackViewConstraints()
-        setupStartButtonConstraints()
+        setupJoinButtonConstraints()
     }
 
     private func setupStackViewConstraints() {
@@ -152,14 +152,14 @@ class JoinByCodeViewController: UIViewController {
         ])
     }
 
-    func setupStartButtonConstraints() {
+    func setupJoinButtonConstraints() {
         NSLayoutConstraint.activate([
-            startButton.heightAnchor.constraint(equalToConstant: Constants.startButtonHeight),
-            startButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.largeInset),
-            startButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.largeInset),
-            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                constant: -Constants.startButtonBottomConstraint)
+            joinButton.heightAnchor.constraint(equalToConstant: Constants.joinButtonHeight),
+            joinButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.largeInset),
+            joinButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.largeInset),
+            joinButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            joinButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+                constant: -Constants.joinButtonBottomConstraint)
         ])
     }
 
@@ -171,7 +171,7 @@ class JoinByCodeViewController: UIViewController {
         present(errorTextAlert, animated: true)
     }
 
-    @objc func startButtonOnTapHandler() {
+    @objc func joinButtonOnTapHandler() {
         output.checkErrorsAndPresent(id: idTextField.text, invitationCode: invitationCodeTextField.text)
     }
 }
@@ -181,6 +181,7 @@ class JoinByCodeViewController: UIViewController {
 
 extension JoinByCodeViewController {
 
+    // Анимация кнопки по долгому нажатию
     @objc func onPressed(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .ended {
             if !isButtonAnimating {
@@ -188,14 +189,14 @@ extension JoinByCodeViewController {
                 animateButton(with: Constants.animationDuration)
             } else {
                 isButtonAnimating = false
-                if let presentationLayer = startButton.layer.presentation() {
-                    startButton.layer.transform = presentationLayer.transform
-                    startButton.layer.removeAnimation(forKey: "shake")
+                if let presentationLayer = joinButton.layer.presentation() {
+                    joinButton.layer.transform = presentationLayer.transform
+                    joinButton.layer.removeAnimation(forKey: "shake")
                 }
                 UIView.animate(withDuration: Constants.animationDuration, animations: { [weak self] in
-                    self?.startButton.transform = .identity
+                    self?.joinButton.transform = .identity
                 }, completion: { [weak self] _ in
-                    self?.startButton.layer.removeAllAnimations()
+                    self?.joinButton.layer.removeAllAnimations()
                 })
             }
         }
@@ -204,7 +205,7 @@ extension JoinByCodeViewController {
     func animateButton(with duration: Double) {
         let translationAnimation = CABasicAnimation(keyPath: "position")
         let yPosition = view.frame.height -
-        Constants.startButtonHeight / 2 - Constants.startButtonBottomConstraint
+        Constants.joinButtonHeight / 2 - Constants.joinButtonBottomConstraint
         translationAnimation.autoreverses = true
         translationAnimation.fromValue = CGPoint(x: view.frame.width / 2.0 - 5, y: yPosition - 5)
         translationAnimation.toValue = CGPoint(x: view.frame.width / 2.0 + 5, y: yPosition + 5)
@@ -223,7 +224,7 @@ extension JoinByCodeViewController {
         animationGroup.autoreverses = true
         animationGroup.duration = Constants.animationDuration
         animationGroup.repeatCount = .infinity
-        startButton.layer.add(animationGroup, forKey: "shake")
+        joinButton.layer.add(animationGroup, forKey: "shake")
     }
 }
 

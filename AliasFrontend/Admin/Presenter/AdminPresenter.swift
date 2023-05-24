@@ -18,6 +18,7 @@ final class AdminPresenter {
 
 extension AdminPresenter: AdminViewOutputProtocol {
 
+    // Проверка на ошибки и показ следующего экрана
     func checkErrorsAndPresent(name: String?, currentType: TypeOfPrivate) {
 
         viewInput?.setupTextFieldBorderColor()

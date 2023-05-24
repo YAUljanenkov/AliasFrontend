@@ -21,8 +21,10 @@ class AdminViewController: UIViewController {
 
     private var output: AdminViewOutputProtocol
 
+    // Тип, выбранный на экране
     private var currentType: TypeOfPrivate = .privateGame
 
+    // Для анимации кнопки по долгому нажатию
     private var isButtonAnimating = false
 
     private lazy var gameNameLabel: UILabel = {
@@ -179,7 +181,7 @@ class AdminViewController: UIViewController {
     private func setupUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Создание комнаты"
-        createButton.addTarget(self, action: #selector(startButtonOnTapHandler), for: .touchUpInside)
+        createButton.addTarget(self, action: #selector(createButtonOnTapHandler), for: .touchUpInside)
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onPressed(_:)))
         createButton.addGestureRecognizer(longPressRecognizer)
         view.backgroundColor = .white
@@ -187,7 +189,7 @@ class AdminViewController: UIViewController {
         view.addSubview(createButton)
         setupTextFieldBorderColor()
         setupStackViewConstraints()
-        setupStartButtonConstraints()
+        setupCreateButtonConstraints()
     }
 
     private func setupStackViewConstraints() {
@@ -204,7 +206,7 @@ class AdminViewController: UIViewController {
         ])
     }
 
-    func setupStartButtonConstraints() {
+    func setupCreateButtonConstraints() {
         NSLayoutConstraint.activate([
             createButton.heightAnchor.constraint(equalToConstant: Constants.createButtonHeight),
             createButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.largeInset),
@@ -223,7 +225,15 @@ class AdminViewController: UIViewController {
         present(errorTextAlert, animated: true)
     }
 
-    @objc func startButtonOnTapHandler() {
+    func showInfoAlert(message: String) {
+        let infoTextAlert = UIAlertController(title: "Информация о комнате",
+        message: message, preferredStyle: .alert)
+        infoTextAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {_ in
+        }))
+        present(infoTextAlert, animated: true)
+    }
+
+    @objc func createButtonOnTapHandler() {
         output.checkErrorsAndPresent(name: gameNameTextField.text, currentType: currentType)
     }
 
@@ -241,6 +251,7 @@ class AdminViewController: UIViewController {
 
 extension AdminViewController {
 
+    // Анимация кнопки
     @objc func onPressed(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .ended {
             if !isButtonAnimating {
@@ -285,14 +296,6 @@ extension AdminViewController {
         animationGroup.repeatCount = .infinity
         createButton.layer.add(animationGroup, forKey: "shake")
     }
-
-    func showInfoAlert(message: String) {
-        let infoTextAlert = UIAlertController(title: "Информация о комнате",
-        message: message, preferredStyle: .alert)
-        infoTextAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {_ in
-        }))
-        present(infoTextAlert, animated: true)
-    }
 }
 
 extension AdminViewController: AdminViewInputProtocol {
@@ -311,6 +314,7 @@ extension AdminViewController: AdminViewInputProtocol {
             case .success(let value):
                 print(value)
                 if let responseModel = value as? CreateRoomResponse {
+                    // Алерт с информацией о комнате, чтобы можно было войти по id и пригласительному коду. Не вышло реализовать только пригласительный код - так как данная функция отсутствует на бэкенде.
                     self?.showInfoAlert(message: "Id комнаты: \(responseModel.id?.uuidString ?? ""), пригласительный код: \(responseModel.invitationCode)")
                 }
                 self?.present(ViewController(), animated: true)
@@ -320,6 +324,7 @@ extension AdminViewController: AdminViewInputProtocol {
         })
     }
 
+    // Смена выбора доступа
     func setPublicType () {
         publicButton.isSelected = true
         privateButton.isSelected = false

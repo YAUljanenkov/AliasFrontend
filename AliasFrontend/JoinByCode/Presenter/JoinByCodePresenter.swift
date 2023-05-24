@@ -15,6 +15,7 @@ final class JoinByCodePresenter {
 
 extension JoinByCodePresenter: JoinByCodeViewOutputProtocol {
 
+    // Проверка на ошибки и показ следующего экрана
     func checkErrorsAndPresent(id: String?, invitationCode: String?) {
         viewInput?.setupTextFieldBorderColor()
         if id == "" {
