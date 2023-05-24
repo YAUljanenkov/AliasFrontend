@@ -16,6 +16,10 @@ enum RequestResult {
 protocol ServiceProtocol {
     func register(name: String, email: String, password: String, complition: @escaping (RequestResult) -> Void)
     func login(email: String, password: String, complition: @escaping (RequestResult) -> Void)
+    func listAll(complition: @escaping ([RoomResponse]) -> Void)
+    func joinRoom(gameRoomId: UUID, complition: @escaping (RequestResult) -> Void)
+    func leaveGameRoom(gameRoomId: UUID, complition: @escaping (RequestResult) -> Void)
+    func logout(complition: @escaping (RequestResult) -> Void)
 }
 
 class Service: ServiceProtocol {
@@ -44,9 +48,9 @@ extension Service {
             }
         }
     }
-    
+
     func login(email: String, password: String, complition: @escaping (RequestResult) -> Void) {
-        let url = URL(string: "http://\(Service.ip):\(Service.port)/users/login")!
+        let url = URL(string: "https://\(Service.ip)/users/login")!
         let parameters = ["email": email, "password": password]
         AF.upload(multipartFormData: { data in
             for (key, value) in parameters {
@@ -59,6 +63,7 @@ extension Service {
             case .success(let value):
                 let keyChainService = KeyChainService()
                 do {
+                    // Save authorization token
                     try keyChainService.upsertToken(Data(value.value.utf8), identifier: "bearer")
                     complition(.success(value: value))
                 } catch {
@@ -69,9 +74,87 @@ extension Service {
             }
         }
     }
+
+    /// List all available public rooms
+    func listAll(complition: @escaping ([RoomResponse]) -> Void) {
+        let url = URL(string: "https://\(Service.ip)/game-rooms/list-all")!
+        let keyChainService = KeyChainService()
+        do {
+            let token = try keyChainService.getToken(identifier: "bearer")
+            let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+            AF.request(url, method: .get, headers: headers)
+            .validate()
+            .responseDecodable(of: [RoomResponse].self) { response in
+                switch response.result {
+                case .success(let value):
+                    print(value)
+                    complition(value)
+                case .failure(let error):
+                    print(error)
+                    complition([])
+                }
+            }
+        } catch {
+            complition([])
+        }
+    }
+
+    func joinRoom(gameRoomId: UUID, complition: @escaping (RequestResult) -> Void) {
+        let url = URL(string: "https://\(Service.ip)/game-rooms/join-room")!
+        let keyChainService = KeyChainService()
+        do {
+            let token = try keyChainService.getToken(identifier: "bearer")
+            let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+            let parameters = ["gameRoomId": gameRoomId]
+            AF.upload(multipartFormData: { data in
+                for (key, value) in parameters {
+                    data.append(Data(value.uuidString.utf8), withName: key)
+                 }
+            }, to: url, method: .post, headers: headers)
+            .validate()
+            .responseDecodable(of: JoinRoomResponse.self) { response in
+                switch response.result {
+                case .success(let value):
+                    print(value)
+                    complition(.success(value: value))
+                case .failure(let error):
+                    print(error)
+                    complition(.error(error: error))
+                }
+            }
+        } catch {
+            complition(.error(error: error))
+        }
+    }
+
+    func leaveGameRoom(gameRoomId: UUID, complition: @escaping (RequestResult) -> Void) {
+        let url = URL(string: "https://\(Service.ip)/game-rooms/leave-room")!
+        let keyChainService = KeyChainService()
+        do {
+            let token = try keyChainService.getToken(identifier: "bearer")
+            let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+            let parameters = ["gameRoomId": gameRoomId]
+            AF.upload(multipartFormData: { data in
+                for (key, value) in parameters {
+                    data.append(Data(value.uuidString.utf8), withName: key)
+                 }
+            }, to: url, method: .post, headers: headers)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .success(let value):
+                    complition(.success(value: value))
+                case .failure(let error):
+                    complition(.error(error: error))
+                }
+            }
+        } catch {
+            complition(.error(error: error))
+        }
+    }
     
     func logout(complition: @escaping (RequestResult) -> Void) {
-        let url = URL(string: "http://\(Service.ip):\(Service.port)/users/logout")!
+        let url = URL(string: "https://\(Service.ip)/users/logout")!
         let keyChainService = KeyChainService()
         do {
             let token = try keyChainService.getToken(identifier: "bearer")

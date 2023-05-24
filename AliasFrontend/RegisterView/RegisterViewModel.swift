@@ -20,6 +20,7 @@ class RegisterViewModel: ObservableObject {
     
     init( dataManager: ServiceProtocol = Service.shared, navigationController: UINavigationController?) {
         self.dataManager = dataManager
+        self.navigationController = navigationController
     }
     
     func registerUser() {
@@ -39,6 +40,7 @@ class RegisterViewModel: ObservableObject {
                     case .success(let value):
                         // TODO: add action.
                         print(value)
+                        self?.navigationController?.setViewControllers([RoomsListViewController()], animated: false)
 //                        navigationController?.setViewControllers([ViewController()], animated: true)
                     case .error(let error):
                         // TODO: add proper check.

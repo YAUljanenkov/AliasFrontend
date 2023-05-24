@@ -27,7 +27,7 @@ class LoginViewModel: ObservableObject {
             case .success(let value):
                 // TODO: add action.
                 print(value)
-//                navigationController?.setViewControllers([ViewController()], animated: true)
+                self?.navigationController?.setViewControllers([RoomsListViewController()], animated: false)
             case .error(let error):
                 // TODO: add proper check.
                 print(error)
