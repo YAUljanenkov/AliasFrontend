@@ -44,12 +44,7 @@ class RegisterViewModel: ObservableObject {
                         let viewController = AdminViewController(output: presenter)
                         presenter.viewInput = viewController
                         print(value)
-                        self?.navigationController?.setViewControllers([viewController], animated: true)
-//                        let presenter = JoinByCodePresenter()
-//                        let viewController = JoinByCodeViewController(output: presenter)
-//                        presenter.viewInput = viewController
-//                        print(value)
-//                        self?.navigationController?.setViewControllers([viewController], animated: true)
+                        self?.navigationController?.setViewControllers([RoomsListViewController()], animated: false)
                     case .error(let error):
                         print(error)
                         self?.showAlert.toggle()

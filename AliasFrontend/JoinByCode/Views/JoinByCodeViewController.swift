@@ -255,7 +255,7 @@ extension JoinByCodeViewController: JoinByCodeViewInputProtocol {
             case .success(let value):
                 print(value)
                 self?.navigationController?.view.layer.add(transition, forKey: nil)
-                self?.present(ViewController(), animated: true)
+                self?.present(RoomViewController(), animated: true)
             case .error(let error):
                 self?.showErrorAlert(message: error.localizedDescription)
             }

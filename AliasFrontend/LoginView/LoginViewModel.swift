@@ -27,7 +27,7 @@ class LoginViewModel: ObservableObject {
             switch result {
             case .success(let value):
                 print(value)
-//                navigationController?.setViewControllers([ViewController()], animated: true)
+                self?.navigationController?.setViewControllers([RoomsListViewController()], animated: false)
             case .error(let error):
                 print(error)
                 self?.showAlert.toggle()

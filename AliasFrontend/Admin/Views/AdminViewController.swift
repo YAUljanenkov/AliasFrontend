@@ -317,7 +317,7 @@ extension AdminViewController: AdminViewInputProtocol {
                     // Алерт с информацией о комнате, чтобы можно было войти по id и пригласительному коду. Не вышло реализовать только пригласительный код - так как данная функция отсутствует на бэкенде.
                     self?.showInfoAlert(message: "Id комнаты: \(responseModel.id?.uuidString ?? ""), пригласительный код: \(responseModel.invitationCode)")
                 }
-                self?.present(ViewController(), animated: true)
+                self?.present(RoomViewController(), animated: true)
             case .error(let error):
                 self?.showErrorAlert(message: error.localizedDescription)
             }
