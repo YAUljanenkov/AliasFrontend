@@ -36,6 +36,10 @@
 		DA3298342A1D85DE006CD0AF /* UIView+Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3298332A1D85DE006CD0AF /* UIView+Pin.swift */; };
 		DA3298362A1D916C006CD0AF /* JoinRoomResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3298352A1D916C006CD0AF /* JoinRoomResponse.swift */; };
 		DA3298392A1D9A09006CD0AF /* RoomListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3298382A1D9A09006CD0AF /* RoomListView.swift */; };
+		DA32983B2A1DA969006CD0AF /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA32983A2A1DA969006CD0AF /* RoomViewController.swift */; };
+		DA32983D2A1DA991006CD0AF /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA32983C2A1DA991006CD0AF /* RoomView.swift */; };
+		DA32983F2A1DAAF0006CD0AF /* TeamResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA32983E2A1DAAF0006CD0AF /* TeamResponse.swift */; };
+		DA3298412A1DACB3006CD0AF /* JoinTeamResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3298402A1DACB3006CD0AF /* JoinTeamResponse.swift */; };
 		DA9336A02A1D7F370028AEB0 /* RoomsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA93369F2A1D7F370028AEB0 /* RoomsListViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +76,10 @@
 		DA3298332A1D85DE006CD0AF /* UIView+Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Pin.swift"; sourceTree = "<group>"; };
 		DA3298352A1D916C006CD0AF /* JoinRoomResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRoomResponse.swift; sourceTree = "<group>"; };
 		DA3298382A1D9A09006CD0AF /* RoomListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListView.swift; sourceTree = "<group>"; };
+		DA32983A2A1DA969006CD0AF /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
+		DA32983C2A1DA991006CD0AF /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
+		DA32983E2A1DAAF0006CD0AF /* TeamResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamResponse.swift; sourceTree = "<group>"; };
+		DA3298402A1DACB3006CD0AF /* JoinTeamResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTeamResponse.swift; sourceTree = "<group>"; };
 		DA93369F2A1D7F370028AEB0 /* RoomsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsListViewController.swift; sourceTree = "<group>"; };
 		ED899F8932580061A08648C3 /* Pods_AliasFrontend.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AliasFrontend.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -216,6 +224,8 @@
 				DA3298352A1D916C006CD0AF /* JoinRoomResponse.swift */,
 				155BB4402A1D73F80029F727 /* CreateRoomResponse.swift */,
 				155BB4422A1D81940029F727 /* JoinResponse.swift */,
+				DA32983E2A1DAAF0006CD0AF /* TeamResponse.swift */,
+				DA3298402A1DACB3006CD0AF /* JoinTeamResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -250,6 +260,8 @@
 		DA3298372A1D99F9006CD0AF /* Room */ = {
 			isa = PBXGroup;
 			children = (
+				DA32983A2A1DA969006CD0AF /* RoomViewController.swift */,
+				DA32983C2A1DA991006CD0AF /* RoomView.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -398,20 +410,24 @@
 				DA9336A02A1D7F370028AEB0 /* RoomsListViewController.swift in Sources */,
 				991D787F2A1D504000D331AA /* UserResponse.swift in Sources */,
 				DA3298362A1D916C006CD0AF /* JoinRoomResponse.swift in Sources */,
+				DA32983F2A1DAAF0006CD0AF /* TeamResponse.swift in Sources */,
 				155BB4432A1D81940029F727 /* JoinResponse.swift in Sources */,
 				991D787F2A1D504000D331AA /* UserResponse.swift in Sources */,
 				155BB43C2A1D6A3D0029F727 /* AdminViewController.swift in Sources */,
 				155BB4452A1D8ECE0029F727 /* JoinByCodeViewController.swift in Sources */,
+				DA32983B2A1DA969006CD0AF /* RoomViewController.swift in Sources */,
 				155BB43D2A1D6A400029F727 /* AdminViewInputProtocol.swift in Sources */,
 				155BB44D2A1D8F390029F727 /* JoinByCodeViewInput.swift in Sources */,
 				155BB43F2A1D6A4D0029F727 /* UIColorExtension.swift in Sources */,
 				155BB44F2A1D8F440029F727 /* JoinByCodeViewOutput.swift in Sources */,
 				155BB4482A1D8EE30029F727 /* JoinByCodePresenter.swift in Sources */,
+				DA3298412A1DACB3006CD0AF /* JoinTeamResponse.swift in Sources */,
 				155BB43B2A1D6A370029F727 /* AdminPresenter.swift in Sources */,
 				991D78832A1D507D00D331AA /* LoginView.swift in Sources */,
 				155BB4412A1D73F80029F727 /* CreateRoomResponse.swift in Sources */,
 				991D78812A1D506400D331AA /* LoginResponse.swift in Sources */,
 				991D78852A1D509500D331AA /* LoginViewModel.swift in Sources */,
+				DA32983D2A1DA991006CD0AF /* RoomView.swift in Sources */,
 				DA3298342A1D85DE006CD0AF /* UIView+Pin.swift in Sources */,
 				DA3298322A1D8469006CD0AF /* RoomResponse.swift in Sources */,
 			);

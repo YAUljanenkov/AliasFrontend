@@ -22,6 +22,9 @@ protocol ServiceProtocol {
     func leaveGameRoom(gameRoomId: UUID, complition: @escaping (RequestResult) -> Void)
     func logout(complition: @escaping (RequestResult) -> Void)
     func createRoom(name: String, isPrivate: Bool, complition: @escaping (RequestResult) -> Void)
+    func listTeams(complition: @escaping ([TeamResponse]) -> Void)
+    func joinTeam(teamId: UUID, complition: @escaping (RequestResult) -> Void)
+    func leaveTeam(complition: @escaping (RequestResult) -> Void)
     func joinByInvitationCode(gameRoomId: String, invitationCode: String, complition: @escaping (RequestResult) -> Void)
 }
 
@@ -108,6 +111,80 @@ extension Service {
             }
         } catch {
             complition([])
+        }
+    }
+
+    func listTeams(complition: @escaping ([TeamResponse]) -> Void) {
+        let url = URL(string: "https://\(Service.ip)/teams/list-teams")!
+        let keyChainService = KeyChainService()
+        do {
+            let token = try keyChainService.getToken(identifier: "bearer")
+            let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+            AF.request(url, method: .get, headers: headers)
+            .validate()
+            .responseDecodable(of: [TeamResponse].self) { response in
+                switch response.result {
+                case .success(let value):
+                    print(value)
+                    complition(value)
+                case .failure(let error):
+                    print(error)
+                    complition([])
+                }
+            }
+        } catch {
+            complition([])
+        }
+    }
+
+    func leaveTeam(complition: @escaping (RequestResult) -> Void) {
+        let url = URL(string: "https://\(Service.ip)/temas/leave-team")!
+        let keyChainService = KeyChainService()
+        do {
+            let token = try keyChainService.getToken(identifier: "bearer")
+            let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+            AF.request(url, method: .post, headers: headers)
+            .validate()
+            .responseDecodable(of: JoinTeamResponse.self) { response in
+                switch response.result {
+                case .success(let value):
+                    print(value)
+                    complition(.success(value: value))
+                case .failure(let error):
+                    print(error)
+                    complition(.error(error: error))
+                }
+            }
+        } catch {
+            complition(.error(error: error))
+        }
+    }
+
+    func joinTeam(teamId: UUID, complition: @escaping (RequestResult) -> Void) {
+        let url = URL(string: "https://\(Service.ip)/temas/join-team")!
+        let keyChainService = KeyChainService()
+        do {
+            let token = try keyChainService.getToken(identifier: "bearer")
+            let headers: HTTPHeaders = [.authorization(bearerToken: token)]
+            let parameters = ["teamId": teamId]
+            AF.upload(multipartFormData: { data in
+                for (key, value) in parameters {
+                    data.append(Data(value.uuidString.utf8), withName: key)
+                 }
+            }, to: url, method: .post, headers: headers)
+            .validate()
+            .responseDecodable(of: JoinTeamResponse.self) { response in
+                switch response.result {
+                case .success(let value):
+                    print(value)
+                    complition(.success(value: value))
+                case .failure(let error):
+                    print(error)
+                    complition(.error(error: error))
+                }
+            }
+        } catch {
+            complition(.error(error: error))
         }
     }
 

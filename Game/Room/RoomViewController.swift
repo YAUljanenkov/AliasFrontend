@@ -8,16 +8,16 @@
 import UIKit
 import SwiftUI
 
-class RoomsListViewController: UIViewController {
+class RoomViewController: UIViewController {
     fileprivate enum Constants {
         static let cell = "Cell"
         static let cellHeight: CGFloat = 40
     }
 
     var dataManager: ServiceProtocol = Service.shared
-    var rooms: [RoomResponse] = []
+    var teams: [TeamResponse] = []
 
-    let roomListView = RoomListView()
+    let roomView = RoomView()
 
     override public func viewDidLoad() {
         configureUI()
@@ -26,26 +26,24 @@ class RoomsListViewController: UIViewController {
     override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // Download a list of all public rooms.
-        dataManager.listAll { rooms in
-            self.rooms = rooms
+        dataManager.listTeams { teams in
+            self.teams = teams
             // Update tableView to view downloaded rooms.
-            self.roomListView.roomsTable.reloadData()
+            self.roomView.teamsTable.reloadData()
         }
     }
 
     func configureUI() {
         view.backgroundColor = .white
-        view.addSubview(roomListView)
-        roomListView.roomsTable.dataSource = self
-        roomListView.roomsTable.delegate = self
-        roomListView.pinHorizontal(to: view)
-        roomListView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
-        roomListView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
-        roomListView.roomsTable.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cell)
+        view.addSubview(roomView)
+        roomView.teamsTable.dataSource = self
+        roomView.teamsTable.delegate = self
+        roomView.pinHorizontal(to: view)
+        roomView.pinTop(to: view.safeAreaLayoutGuide.topAnchor)
+        roomView.pinBottom(to: view.safeAreaLayoutGuide.bottomAnchor)
+        roomView.teamsTable.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cell)
 
-        roomListView.exitButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
-        roomListView.joinByCode.addTarget(self, action: #selector(joinByCode), for: .touchUpInside)
-        roomListView.createRoom.addTarget(self, action: #selector(createRoom), for: .touchUpInside)
+        roomView.exitButton.addTarget(self, action: #selector(exit), for: .touchUpInside)
     }
 
     @objc
@@ -87,9 +85,9 @@ class RoomsListViewController: UIViewController {
     }
 }
 
-extension RoomsListViewController: UITableViewDelegate, UITableViewDataSource {
+extension RoomViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        rooms.count
+        teams.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -98,14 +96,7 @@ extension RoomsListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Cell was tapped.
-        dataManager.joinRoom(gameRoomId: rooms[indexPath.row].id, complition: { response in
-            guard let navigationController = self.navigationController else {
-                return
-            }
-
-            // Open room window.
-            navigationController.setViewControllers([RoomViewController()], animated: false)
-        })
+        dataManager.joinTeam(teamId: teams[indexPath.row].id, complition: {_ in })
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,7 +108,7 @@ extension RoomsListViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         let title = UILabel()
-        title.text = rooms[indexPath.row].name
+        title.text = teams[indexPath.row].name
         cell.addSubview(title)
         title.pin(to: cell)
 
