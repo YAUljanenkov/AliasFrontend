@@ -15,7 +15,7 @@ protocol AdminViewInputProtocol: AnyObject {
 
     func showErrorAlert(message: String)
 
-    func setErrorGroupTextField()
+    func setErrorTextField()
 
     func presentRoom()
 

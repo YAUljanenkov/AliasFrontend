@@ -13,6 +13,11 @@
 		155BB43E2A1D6A420029F727 /* AdminViewOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1562F4242A1D68A80086A7C8 /* AdminViewOutputProtocol.swift */; };
 		155BB43F2A1D6A4D0029F727 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1562F4252A1D68A80086A7C8 /* UIColorExtension.swift */; };
 		155BB4412A1D73F80029F727 /* CreateRoomResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155BB4402A1D73F80029F727 /* CreateRoomResponse.swift */; };
+		155BB4432A1D81940029F727 /* JoinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155BB4422A1D81940029F727 /* JoinResponse.swift */; };
+		155BB4452A1D8ECE0029F727 /* JoinByCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155BB4442A1D8ECE0029F727 /* JoinByCodeViewController.swift */; };
+		155BB4482A1D8EE30029F727 /* JoinByCodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155BB4472A1D8EE30029F727 /* JoinByCodePresenter.swift */; };
+		155BB44D2A1D8F390029F727 /* JoinByCodeViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155BB44C2A1D8F390029F727 /* JoinByCodeViewInput.swift */; };
+		155BB44F2A1D8F440029F727 /* JoinByCodeViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155BB44E2A1D8F440029F727 /* JoinByCodeViewOutput.swift */; };
 		991D785E2A1D4EF000D331AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991D785D2A1D4EF000D331AA /* AppDelegate.swift */; };
 		991D78602A1D4EF000D331AA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991D785F2A1D4EF000D331AA /* SceneDelegate.swift */; };
 		991D78622A1D4EF000D331AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991D78612A1D4EF000D331AA /* ViewController.swift */; };
@@ -31,11 +36,16 @@
 
 /* Begin PBXFileReference section */
 		155BB4402A1D73F80029F727 /* CreateRoomResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomResponse.swift; sourceTree = "<group>"; };
+		155BB4422A1D81940029F727 /* JoinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinResponse.swift; sourceTree = "<group>"; };
+		155BB4442A1D8ECE0029F727 /* JoinByCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinByCodeViewController.swift; sourceTree = "<group>"; };
+		155BB4472A1D8EE30029F727 /* JoinByCodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinByCodePresenter.swift; sourceTree = "<group>"; };
+		155BB44C2A1D8F390029F727 /* JoinByCodeViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinByCodeViewInput.swift; sourceTree = "<group>"; };
+		155BB44E2A1D8F440029F727 /* JoinByCodeViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinByCodeViewOutput.swift; sourceTree = "<group>"; };
 		1562F41F2A1D68A80086A7C8 /* AdminPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPresenter.swift; sourceTree = "<group>"; };
 		1562F4212A1D68A80086A7C8 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		1562F4232A1D68A80086A7C8 /* AdminViewInputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewInputProtocol.swift; sourceTree = "<group>"; };
 		1562F4242A1D68A80086A7C8 /* AdminViewOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewOutputProtocol.swift; sourceTree = "<group>"; };
-		1562F4252A1D68A80086A7C8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = AliasFrontend/UIColorExtension.swift; sourceTree = "<group>"; };
+		1562F4252A1D68A80086A7C8 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		9475E9EE9C56B4683B549CFB /* Pods-AliasFrontend.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AliasFrontend.debug.xcconfig"; path = "Target Support Files/Pods-AliasFrontend/Pods-AliasFrontend.debug.xcconfig"; sourceTree = "<group>"; };
 		991D785A2A1D4EF000D331AA /* AliasFrontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AliasFrontend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		991D785D2A1D4EF000D331AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +86,41 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		155BB4462A1D8ED70029F727 /* JoinByCode */ = {
+			isa = PBXGroup;
+			children = (
+				155BB44B2A1D8F0F0029F727 /* Views */,
+				155BB44A2A1D8F060029F727 /* Protocols */,
+				155BB4492A1D8EFC0029F727 /* Presenter */,
+			);
+			path = JoinByCode;
+			sourceTree = "<group>";
+		};
+		155BB4492A1D8EFC0029F727 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				155BB4472A1D8EE30029F727 /* JoinByCodePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		155BB44A2A1D8F060029F727 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				155BB44C2A1D8F390029F727 /* JoinByCodeViewInput.swift */,
+				155BB44E2A1D8F440029F727 /* JoinByCodeViewOutput.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		155BB44B2A1D8F0F0029F727 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				155BB4442A1D8ECE0029F727 /* JoinByCodeViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		1562F41D2A1D68A80086A7C8 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
@@ -83,8 +128,7 @@
 				1562F4202A1D68A80086A7C8 /* Views */,
 				1562F4222A1D68A80086A7C8 /* Protocols */,
 			);
-			name = Admin;
-			path = AliasFrontend/Admin;
+			path = Admin;
 			sourceTree = "<group>";
 		};
 		1562F41E2A1D68A80086A7C8 /* Presenter */ = {
@@ -115,8 +159,6 @@
 		991D78512A1D4EF000D331AA = {
 			isa = PBXGroup;
 			children = (
-				1562F41D2A1D68A80086A7C8 /* Admin */,
-				1562F4252A1D68A80086A7C8 /* UIColorExtension.swift */,
 				991D785C2A1D4EF000D331AA /* AliasFrontend */,
 				991D785B2A1D4EF000D331AA /* Products */,
 				AEBB550099074A982C1B965F /* Pods */,
@@ -135,14 +177,17 @@
 		991D785C2A1D4EF000D331AA /* AliasFrontend */ = {
 			isa = PBXGroup;
 			children = (
-				991D78742A1D4F8500D331AA /* KeyChain.swift */,
+				155BB4462A1D8ED70029F727 /* JoinByCode */,
+				1562F41D2A1D68A80086A7C8 /* Admin */,
+				991D787B2A1D4F8500D331AA /* RegisterView */,
 				991D78772A1D4F8500D331AA /* LoginView */,
 				991D78732A1D4F8500D331AA /* Model */,
-				991D787B2A1D4F8500D331AA /* RegisterView */,
 				991D78782A1D4F8500D331AA /* Service.swift */,
+				991D78742A1D4F8500D331AA /* KeyChain.swift */,
 				991D785D2A1D4EF000D331AA /* AppDelegate.swift */,
 				991D785F2A1D4EF000D331AA /* SceneDelegate.swift */,
 				991D78612A1D4EF000D331AA /* ViewController.swift */,
+				1562F4252A1D68A80086A7C8 /* UIColorExtension.swift */,
 				991D78662A1D4EF400D331AA /* Assets.xcassets */,
 				991D78682A1D4EF400D331AA /* LaunchScreen.storyboard */,
 				991D786B2A1D4EF400D331AA /* Info.plist */,
@@ -156,6 +201,7 @@
 				991D787E2A1D504000D331AA /* UserResponse.swift */,
 				991D78802A1D506400D331AA /* LoginResponse.swift */,
 				155BB4402A1D73F80029F727 /* CreateRoomResponse.swift */,
+				155BB4422A1D81940029F727 /* JoinResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -309,10 +355,15 @@
 				991D78892A1D50F000D331AA /* RegisterViewModel.swift in Sources */,
 				991D785E2A1D4EF000D331AA /* AppDelegate.swift in Sources */,
 				991D78602A1D4EF000D331AA /* SceneDelegate.swift in Sources */,
+				155BB4432A1D81940029F727 /* JoinResponse.swift in Sources */,
 				991D787F2A1D504000D331AA /* UserResponse.swift in Sources */,
 				155BB43C2A1D6A3D0029F727 /* AdminViewController.swift in Sources */,
+				155BB4452A1D8ECE0029F727 /* JoinByCodeViewController.swift in Sources */,
 				155BB43D2A1D6A400029F727 /* AdminViewInputProtocol.swift in Sources */,
+				155BB44D2A1D8F390029F727 /* JoinByCodeViewInput.swift in Sources */,
 				155BB43F2A1D6A4D0029F727 /* UIColorExtension.swift in Sources */,
+				155BB44F2A1D8F440029F727 /* JoinByCodeViewOutput.swift in Sources */,
+				155BB4482A1D8EE30029F727 /* JoinByCodePresenter.swift in Sources */,
 				155BB43B2A1D6A370029F727 /* AdminPresenter.swift in Sources */,
 				991D78832A1D507D00D331AA /* LoginView.swift in Sources */,
 				155BB4412A1D73F80029F727 /* CreateRoomResponse.swift in Sources */,

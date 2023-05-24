@@ -14,13 +14,9 @@ class AdminViewController: UIViewController {
         static let largeInset = 30.0
         static let textFieldHeight = 40.0
         static let cornerRadius = 15.0
-
-        static let startButtonHeight = 50.0
-        static let startButtonBottomConstraint = 35.0
+        static let createButtonHeight = 50.0
+        static let createButtonBottomConstraint = 35.0
         static let animationDuration = 0.3
-
-        static let defaultInfectionFactor = 3
-        static let defaultPeriod = 1.0
     }
 
     private var output: AdminViewOutputProtocol
@@ -154,7 +150,7 @@ class AdminViewController: UIViewController {
         return stackView
     }()
 
-    private var startButton: UIButton = {
+    private var createButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(hexString: "#0077FF")
         button.tintColor = .white
@@ -183,12 +179,12 @@ class AdminViewController: UIViewController {
     private func setupUI() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Создание комнаты"
-        startButton.addTarget(self, action: #selector(startButtonOnTapHandler), for: .touchUpInside)
+        createButton.addTarget(self, action: #selector(startButtonOnTapHandler), for: .touchUpInside)
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onPressed(_:)))
-        startButton.addGestureRecognizer(longPressRecognizer)
+        createButton.addGestureRecognizer(longPressRecognizer)
         view.backgroundColor = .white
         view.addSubview(stackView)
-        view.addSubview(startButton)
+        view.addSubview(createButton)
         setupTextFieldBorderColor()
         setupStackViewConstraints()
         setupStartButtonConstraints()
@@ -210,12 +206,12 @@ class AdminViewController: UIViewController {
 
     func setupStartButtonConstraints() {
         NSLayoutConstraint.activate([
-            startButton.heightAnchor.constraint(equalToConstant: Constants.startButtonHeight),
-            startButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.largeInset),
-            startButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.largeInset),
-            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                constant: -Constants.startButtonBottomConstraint)
+            createButton.heightAnchor.constraint(equalToConstant: Constants.createButtonHeight),
+            createButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.largeInset),
+            createButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.largeInset),
+            createButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            createButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+                constant: -Constants.createButtonBottomConstraint)
         ])
     }
 
@@ -252,14 +248,14 @@ extension AdminViewController {
                 animateButton(with: Constants.animationDuration)
             } else {
                 isButtonAnimating = false
-                if let presentationLayer = startButton.layer.presentation() {
-                    startButton.layer.transform = presentationLayer.transform
-                    startButton.layer.removeAnimation(forKey: "shake")
+                if let presentationLayer = createButton.layer.presentation() {
+                    createButton.layer.transform = presentationLayer.transform
+                    createButton.layer.removeAnimation(forKey: "shake")
                 }
                 UIView.animate(withDuration: Constants.animationDuration, animations: { [weak self] in
-                    self?.startButton.transform = .identity
+                    self?.createButton.transform = .identity
                 }, completion: { [weak self] _ in
-                    self?.startButton.layer.removeAllAnimations()
+                    self?.createButton.layer.removeAllAnimations()
                 })
             }
         }
@@ -268,7 +264,7 @@ extension AdminViewController {
     func animateButton(with duration: Double) {
         let translationAnimation = CABasicAnimation(keyPath: "position")
         let yPosition = view.frame.height -
-        Constants.startButtonHeight / 2 - Constants.startButtonBottomConstraint
+        Constants.createButtonHeight / 2 - Constants.createButtonBottomConstraint
         translationAnimation.autoreverses = true
         translationAnimation.fromValue = CGPoint(x: view.frame.width / 2.0 - 5, y: yPosition - 5)
         translationAnimation.toValue = CGPoint(x: view.frame.width / 2.0 + 5, y: yPosition + 5)
@@ -287,13 +283,21 @@ extension AdminViewController {
         animationGroup.autoreverses = true
         animationGroup.duration = Constants.animationDuration
         animationGroup.repeatCount = .infinity
-        startButton.layer.add(animationGroup, forKey: "shake")
+        createButton.layer.add(animationGroup, forKey: "shake")
+    }
+
+    func showInfoAlert(message: String) {
+        let infoTextAlert = UIAlertController(title: "Информация о комнате",
+        message: message, preferredStyle: .alert)
+        infoTextAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: {_ in
+        }))
+        present(infoTextAlert, animated: true)
     }
 }
 
 extension AdminViewController: AdminViewInputProtocol {
 
-    func setErrorGroupTextField() {
+    func setErrorTextField() {
         gameNameTextField.layer.borderColor = UIColor.systemRed.cgColor
     }
 
@@ -302,16 +306,13 @@ extension AdminViewController: AdminViewInputProtocol {
     }
 
     func presentRoom() {
-        let transition = CATransition()
-        transition.duration = 0.5
-        transition.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-        transition.type = .moveIn
-        transition.subtype = .fromTop
         Service.shared.createRoom(name: gameNameTextField.text ?? "", isPrivate: currentType == .privateGame, complition: { [weak self] result in
             switch result {
             case .success(let value):
                 print(value)
-                self?.navigationController?.view.layer.add(transition, forKey: nil)
+                if let responseModel = value as? CreateRoomResponse {
+                    self?.showInfoAlert(message: "Id комнаты: \(responseModel.id?.uuidString ?? ""), пригласительный код: \(responseModel.invitationCode)")
+                }
                 self?.present(ViewController(), animated: true)
             case .error(let error):
                 self?.showErrorAlert(message: error.localizedDescription)

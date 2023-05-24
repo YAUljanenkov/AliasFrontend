@@ -21,14 +21,10 @@ extension AdminPresenter: AdminViewOutputProtocol {
     func checkErrorsAndPresent(name: String?, currentType: TypeOfPrivate) {
 
         viewInput?.setupTextFieldBorderColor()
-        if name == nil {
-            viewInput?.showErrorAlert(message: "Введите непустую строку")
-            viewInput?.setErrorGroupTextField()
-            return
-        }
         if name == "" {
             viewInput?.showErrorAlert(message: "Введите непустую строку")
-            viewInput?.setErrorGroupTextField()
+            viewInput?.setErrorTextField()
+            return
         }
         viewInput?.setupTextFieldBorderColor()
         viewInput?.presentRoom()

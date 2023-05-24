@@ -18,13 +18,13 @@ class RegisterViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var errorMessage = ""
     
-    init( dataManager: ServiceProtocol = Service.shared, navigationController: UINavigationController?) {
+    init(dataManager: ServiceProtocol = Service.shared, navigationController: UINavigationController?) {
         self.dataManager = dataManager
         self.navigationController = navigationController
     }
     
     func registerUser() {
-        dataManager.register(name: name, email: login, password: password) {[weak self] result in
+        dataManager.register(name: name, email: login, password: password) { [weak self] result in
             switch result {
             case .success(let value):
                 print(value)
@@ -43,6 +43,11 @@ class RegisterViewModel: ObservableObject {
                         presenter.viewInput = viewController
                         print(value)
                         self?.navigationController?.setViewControllers([viewController], animated: true)
+//                        let presenter = JoinByCodePresenter()
+//                        let viewController = JoinByCodeViewController(output: presenter)
+//                        presenter.viewInput = viewController
+//                        print(value)
+//                        self?.navigationController?.setViewControllers([viewController], animated: true)
                     case .error(let error):
                         // TODO: add proper check.
                         print(error)
