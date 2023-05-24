@@ -18,13 +18,14 @@ class RegisterViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var errorMessage = ""
     
-    init( dataManager: ServiceProtocol = Service.shared, navigationController: UINavigationController?) {
+    init(dataManager: ServiceProtocol = Service.shared, navigationController: UINavigationController?) {
         self.dataManager = dataManager
         self.navigationController = navigationController
     }
     
     func registerUser() {
-        dataManager.register(name: name, email: login, password: password) {[weak self] result in
+        // Регистрация пользователя с помощью Alamofire.
+        dataManager.register(name: name, email: login, password: password) { [weak self] result in
             switch result {
             case .success(let value):
                 print(value)
@@ -35,22 +36,22 @@ class RegisterViewModel: ObservableObject {
                 }
                 
                 // Registration does not log in, we need to do it afterwards to get bearer token.
-                self?.dataManager.login(email: login, password: password) {result in
+                self?.dataManager.login(email: login, password: password) { result in
                     switch result {
+                    // Вход, если регистрация прошла успешно.
                     case .success(let value):
-                        // TODO: add action.
+                        let presenter = AdminPresenter()
+                        let viewController = AdminViewController(output: presenter)
+                        presenter.viewInput = viewController
                         print(value)
                         self?.navigationController?.setViewControllers([RoomsListViewController()], animated: false)
-//                        navigationController?.setViewControllers([ViewController()], animated: true)
                     case .error(let error):
-                        // TODO: add proper check.
                         print(error)
                         self?.showAlert.toggle()
                         self?.errorMessage = error.localizedDescription
                     }
                 }
             case .error(let error):
-                // TODO: add proper check.
                 print(error)
                 self?.showAlert.toggle()
                 self?.errorMessage = error.localizedDescription

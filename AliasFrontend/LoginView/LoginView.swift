@@ -45,7 +45,6 @@ struct LoginView: View {
                             .font(.system(size: 14.0))
                     }
                 }
-                
             }
             .padding(20.0)
             .alert(isPresented: $viewModel.showAlert) {
